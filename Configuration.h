@@ -494,9 +494,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // DyzEnd
-  #define DEFAULT_Kp 14.0
-  #define DEFAULT_Ki 0.5
-  #define DEFAULT_Kd 125.0
+  #define DEFAULT_Kp 26.11
+  #define DEFAULT_Ki 3.34
+  #define DEFAULT_Kd 50.97
 
   // Ultimaker
   //#define DEFAULT_Kp 22.2
@@ -865,7 +865,7 @@
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1008,11 +1008,11 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -25, -10, -0.97 }
+#define NOZZLE_TO_PROBE_OFFSET { -25, -10, -2.445 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 40
+#define PROBING_MARGIN 20
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -1033,7 +1033,7 @@
  * A total of 3 or more adds more slow probes, taking the average.
  */
 #define MULTIPLE_PROBING 3
-//#define EXTRA_PROBING    1
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1144,15 +1144,15 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 220
+#define X_BED_SIZE 205
 #define Y_BED_SIZE 205
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define Y_MIN_POS -35
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
+#define X_MAX_POS (X_BED_SIZE + MAX(X_MIN_POS, 0))
+#define Y_MAX_POS (Y_BED_SIZE + MAX(Y_MIN_POS, 0))
 #define Z_MAX_POS 310
 
 /**
@@ -1302,7 +1302,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 4
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
